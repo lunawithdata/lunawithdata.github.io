@@ -7,17 +7,206 @@
     "text": "Transfem enby who likes sports, music, video games, my partner and two of the best cats in the world. Currently studying at the University of Nebraska-Lincoln and work as a student reporter for Nebraska Public Media. Just remember Paper and Munchlax love their head scritches."
   },
   {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html",
+    "title": "Schema",
+    "section": "",
+    "text": "Full column reference for all 17 tables in this dataset.\n\n\nOne row per race: season, round, circuit, name, date/time, and practice/qualifying/sprint session schedule.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nraceId\nUnique identifier for the race (primary key).\n\n\nyear\nChampionship season.\n\n\nround\nRound number within that season.\n\n\ncircuitId\nForeign key to circuits.csv.\n\n\nname\nOfficial race name, e.g. ‘Monaco Grand Prix’.\n\n\ndate\nRace date (YYYY-MM-DD).\n\n\ntime\nRace start time (UTC), or if unknown.\n\n\nurl\nWikipedia page for the race.\n\n\nfp1_date\nFree Practice 1 date.\n\n\nfp1_time\nFree Practice 1 start time (UTC).\n\n\nfp2_date\nFree Practice 2 date.\n\n\nfp2_time\nFree Practice 2 start time (UTC).\n\n\nfp3_date\nFree Practice 3 date.\n\n\nfp3_time\nFree Practice 3 start time (UTC).\n\n\nquali_date\nQualifying session date.\n\n\nquali_time\nQualifying session start time (UTC).\n\n\nsprint_date\nSprint race date, or if the weekend had no sprint.\n\n\nsprint_time\nSprint race start time (UTC), or .\n\n\n\n\n\n\nRace classification results: grid position, finishing position, points, laps, race time, fastest lap, and finishing status per driver per race.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nresultId\nUnique identifier for the result row (primary key).\n\n\nraceId\nForeign key to races.csv.\n\n\ndriverId\nForeign key to drivers.csv.\n\n\nconstructorId\nForeign key to constructors.csv.\n\n\nnumber\nCar number used in this race.\n\n\ngrid\nStarting grid position.\n\n\nposition\nFinal classified finishing position, or if unclassified (DNF/DSQ/etc).\n\n\npositionText\nFinishing position as text; non-numeric codes like ‘R’ (retired), ‘D’ (disqualified), ‘W’ (withdrew) for unclassified results.\n\n\npositionOrder\nNumeric finishing order for sorting (classified drivers first, by position, then unclassified).\n\n\npoints\nChampionship points scored.\n\n\nlaps\nLaps completed.\n\n\ntime\nRace finishing time (leader) or gap to leader, or if not applicable.\n\n\nmilliseconds\nRace time in milliseconds, or .\n\n\nfastestLap\nLap number of the driver’s fastest lap, or .\n\n\nrank\nRank of this driver’s fastest lap among all drivers in the race, or .\n\n\nfastestLapTime\nFastest lap time, or .\n\n\nfastestLapSpeed\nAverage speed on the fastest lap (km/h), or . Not available from the data source for 2025/2026 races.\n\n\nstatusId\nForeign key to status.csv describing how the race ended for this driver.\n\n\n\n\n\n\nQualifying session results per driver per race, including Q1/Q2/Q3 times and grid position.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nqualifyId\nUnique identifier for the qualifying result (primary key).\n\n\nraceId\nForeign key to races.csv.\n\n\ndriverId\nForeign key to drivers.csv.\n\n\nconstructorId\nForeign key to constructors.csv.\n\n\nnumber\nCar number used in qualifying.\n\n\nposition\nQualifying position, which sets the starting grid.\n\n\nq1\nQ1 session lap time, or if not set.\n\n\nq2\nQ2 session lap time, or if the driver didn’t advance to Q2.\n\n\nq3\nQ3 session lap time, or if the driver didn’t advance to Q3.\n\n\n\n\n\n\nSprint race classification results, same structure as results.csv, for race weekends with a sprint format.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nresultId\nUnique identifier for the sprint result (primary key).\n\n\nraceId\nForeign key to races.csv.\n\n\ndriverId\nForeign key to drivers.csv.\n\n\nconstructorId\nForeign key to constructors.csv.\n\n\nnumber\nCar number used in the sprint.\n\n\ngrid\nSprint starting grid position.\n\n\nposition\nFinal classified sprint finishing position, or if unclassified.\n\n\npositionText\nFinishing position as text; non-numeric codes for unclassified results.\n\n\npositionOrder\nNumeric finishing order for sorting.\n\n\npoints\nChampionship points scored in the sprint.\n\n\nlaps\nLaps completed.\n\n\ntime\nSprint finishing time (leader) or gap to leader, or .\n\n\nmilliseconds\nSprint time in milliseconds, or .\n\n\nfastestLap\nLap number of the driver’s fastest lap in the sprint, or .\n\n\nfastestLapTime\nFastest sprint lap time, or .\n\n\nstatusId\nForeign key to status.csv describing how the sprint ended for this driver.\n\n\n\n\n\n\nIndividual pit stop records: which lap, stop number, time of day, and duration per driver per race.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nraceId\nForeign key to races.csv.\n\n\ndriverId\nForeign key to drivers.csv.\n\n\nstop\nStop number for this driver in this race (1st stop, 2nd stop, etc).\n\n\nlap\nLap on which the stop occurred.\n\n\ntime\nTime of day the stop occurred.\n\n\nduration\nPit stop duration in seconds.\n\n\nmilliseconds\nPit stop duration in milliseconds.\n\n\n\n\n\n\nLap-by-lap timing per driver per race (position and time each lap). Does not yet include 2025/2026 data - see README.\n\n\n\nColumn\nDescription\n\n\n\n\nraceId\nForeign key to races.csv.\n\n\ndriverId\nForeign key to drivers.csv.\n\n\nlap\nLap number.\n\n\nposition\nDriver’s race position at the end of this lap.\n\n\ntime\nLap time.\n\n\nmilliseconds\nLap time in milliseconds.\n\n\n\n\n\n\nChampionship standings for drivers after each race: cumulative points, position, and wins.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\ndriverStandingsId\nUnique identifier for this standings row (primary key).\n\n\nraceId\nForeign key to races.csv - standings as of after this race.\n\n\ndriverId\nForeign key to drivers.csv.\n\n\npoints\nCumulative championship points through this race.\n\n\nposition\nChampionship standing position.\n\n\npositionText\nStanding position as text.\n\n\nwins\nCumulative race wins through this race.\n\n\n\n\n\n\nChampionship standings for constructors (teams) after each race: cumulative points, position, and wins.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nconstructorStandingsId\nUnique identifier for this standings row (primary key).\n\n\nraceId\nForeign key to races.csv - standings as of after this race.\n\n\nconstructorId\nForeign key to constructors.csv.\n\n\npoints\nCumulative championship points through this race.\n\n\nposition\nChampionship standing position.\n\n\npositionText\nStanding position as text.\n\n\nwins\nCumulative race wins through this race.\n\n\n\n\n\n\nPoints scored by each constructor in each race, aggregated across both of their drivers.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nconstructorResultsId\nUnique identifier for this row (primary key).\n\n\nraceId\nForeign key to races.csv.\n\n\nconstructorId\nForeign key to constructors.csv.\n\n\npoints\nTotal points scored by the constructor in this race.\n\n\nstatus\n‘D’ if the constructor was disqualified from this race, otherwise .\n\n\n\n\n\n\nDriver lookup table: name, code, permanent number, date of birth, and nationality.\n\n\n\nColumn\nDescription\n\n\n\n\ndriverId\nUnique identifier for the driver (primary key).\n\n\ndriverRef\nURL-safe reference slug for the driver.\n\n\nnumber\nPermanent car number, or if none assigned.\n\n\ncode\nThree-letter driver code, or if none assigned.\n\n\nforename\nDriver’s given name.\n\n\nsurname\nDriver’s family name.\n\n\ndob\nDate of birth.\n\n\nnationality\nDriver’s nationality.\n\n\nurl\nWikipedia page for the driver.\n\n\n\n\n\n\nConstructor (team) lookup table: name and nationality.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nconstructorId\nUnique identifier for the constructor (primary key).\n\n\nconstructorRef\nURL-safe reference slug for the constructor.\n\n\nname\nConstructor/team name.\n\n\nnationality\nConstructor’s nationality.\n\n\nurl\nWikipedia page for the constructor.\n\n\n\n\n\n\nCircuit lookup table: name, location, country, and geographic coordinates.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\ncircuitId\nUnique identifier for the circuit (primary key).\n\n\ncircuitRef\nURL-safe reference slug for the circuit.\n\n\nname\nCircuit name.\n\n\nlocation\nCity or locality.\n\n\ncountry\nCountry.\n\n\nlat\nLatitude.\n\n\nlng\nLongitude.\n\n\nalt\nAltitude in meters. Set to 0 as a placeholder for circuits added after 2024 where this data isn’t available from the source API.\n\n\nurl\nWikipedia page for the circuit.\n\n\n\n\n\n\nOne row per championship season (year), with a link to that season’s overview.\n\n\n\nColumn\nDescription\n\n\n\n\nyear\nChampionship season (primary key).\n\n\nurl\nWikipedia page for that season.\n\n\n\n\n\n\nLookup table of race finishing status codes (e.g. Finished, Retired, Disqualified, Did not start).\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nstatusId\nUnique identifier for the status (primary key).\n\n\nstatus\nHuman-readable status text, referenced by results.csv and sprint_results.csv.\n\n\n\n\n\n\nFree practice (FP1/FP2/FP3) session results per driver per race, sourced from official F1 live timing via FastF1. Covers only the 2025/2026 races added by this extension - not available for 1950-2024. Reserve/test drivers who ran practice sessions but didn’t race are not included, since they aren’t in drivers.csv.\n\n\n\nColumn\nDescription\n\n\n\n\nraceId\nForeign key to races.csv.\n\n\ndriverId\nForeign key to drivers.csv.\n\n\nsession\nWhich practice session: FP1, FP2, or FP3.\n\n\nposition\nRank within the session by best lap time (1 = fastest).\n\n\nbestLapTime\nDriver’s fastest lap time in this session.\n\n\nlaps\nNumber of laps completed in this session.\n\n\n\n\n\n\nPer-race weather summary (aggregated from minute-by-minute samples), sourced from official F1 live timing via FastF1. Covers only the 2025/2026 races added by this extension - not available for 1950-2024.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nraceId\nForeign key to races.csv.\n\n\nairTempAvg\nAverage air temperature during the race (°C).\n\n\nairTempMin\nMinimum air temperature during the race (°C).\n\n\nairTempMax\nMaximum air temperature during the race (°C).\n\n\ntrackTempAvg\nAverage track surface temperature during the race (°C).\n\n\ntrackTempMin\nMinimum track surface temperature during the race (°C).\n\n\ntrackTempMax\nMaximum track surface temperature during the race (°C).\n\n\nhumidityAvg\nAverage relative humidity during the race (%).\n\n\nwindSpeedAvg\nAverage wind speed during the race (m/s).\n\n\nwindSpeedMax\nMaximum wind speed during the race (m/s).\n\n\nrainfall\nTrue if rain was recorded at any point during the race.\n\n\n\n\n\n\nTire strategy per driver per race, sourced from official F1 live timing via FastF1. Covers only the 2025/2026 races added by this extension - not available for 1950-2024.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nraceId\nForeign key to races.csv.\n\n\ndriverId\nForeign key to drivers.csv.\n\n\nstint\nStint number for this driver in this race (1st stint, 2nd stint, etc).\n\n\ncompound\nTire compound used this stint (SOFT, MEDIUM, HARD, INTERMEDIATE, WET), or if unknown.\n\n\nstartLap\nFirst lap of this stint.\n\n\nendLap\nLast lap of this stint.\n\n\nlapsOnTire\nNumber of laps completed on this set of tires (endLap - startLap + 1)."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html#races.csv",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html#races.csv",
+    "title": "Schema",
+    "section": "",
+    "text": "One row per race: season, round, circuit, name, date/time, and practice/qualifying/sprint session schedule.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nraceId\nUnique identifier for the race (primary key).\n\n\nyear\nChampionship season.\n\n\nround\nRound number within that season.\n\n\ncircuitId\nForeign key to circuits.csv.\n\n\nname\nOfficial race name, e.g. ‘Monaco Grand Prix’.\n\n\ndate\nRace date (YYYY-MM-DD).\n\n\ntime\nRace start time (UTC), or if unknown.\n\n\nurl\nWikipedia page for the race.\n\n\nfp1_date\nFree Practice 1 date.\n\n\nfp1_time\nFree Practice 1 start time (UTC).\n\n\nfp2_date\nFree Practice 2 date.\n\n\nfp2_time\nFree Practice 2 start time (UTC).\n\n\nfp3_date\nFree Practice 3 date.\n\n\nfp3_time\nFree Practice 3 start time (UTC).\n\n\nquali_date\nQualifying session date.\n\n\nquali_time\nQualifying session start time (UTC).\n\n\nsprint_date\nSprint race date, or if the weekend had no sprint.\n\n\nsprint_time\nSprint race start time (UTC), or ."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html#results.csv",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html#results.csv",
+    "title": "Schema",
+    "section": "",
+    "text": "Race classification results: grid position, finishing position, points, laps, race time, fastest lap, and finishing status per driver per race.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nresultId\nUnique identifier for the result row (primary key).\n\n\nraceId\nForeign key to races.csv.\n\n\ndriverId\nForeign key to drivers.csv.\n\n\nconstructorId\nForeign key to constructors.csv.\n\n\nnumber\nCar number used in this race.\n\n\ngrid\nStarting grid position.\n\n\nposition\nFinal classified finishing position, or if unclassified (DNF/DSQ/etc).\n\n\npositionText\nFinishing position as text; non-numeric codes like ‘R’ (retired), ‘D’ (disqualified), ‘W’ (withdrew) for unclassified results.\n\n\npositionOrder\nNumeric finishing order for sorting (classified drivers first, by position, then unclassified).\n\n\npoints\nChampionship points scored.\n\n\nlaps\nLaps completed.\n\n\ntime\nRace finishing time (leader) or gap to leader, or if not applicable.\n\n\nmilliseconds\nRace time in milliseconds, or .\n\n\nfastestLap\nLap number of the driver’s fastest lap, or .\n\n\nrank\nRank of this driver’s fastest lap among all drivers in the race, or .\n\n\nfastestLapTime\nFastest lap time, or .\n\n\nfastestLapSpeed\nAverage speed on the fastest lap (km/h), or . Not available from the data source for 2025/2026 races.\n\n\nstatusId\nForeign key to status.csv describing how the race ended for this driver."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html#qualifying.csv",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html#qualifying.csv",
+    "title": "Schema",
+    "section": "",
+    "text": "Qualifying session results per driver per race, including Q1/Q2/Q3 times and grid position.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nqualifyId\nUnique identifier for the qualifying result (primary key).\n\n\nraceId\nForeign key to races.csv.\n\n\ndriverId\nForeign key to drivers.csv.\n\n\nconstructorId\nForeign key to constructors.csv.\n\n\nnumber\nCar number used in qualifying.\n\n\nposition\nQualifying position, which sets the starting grid.\n\n\nq1\nQ1 session lap time, or if not set.\n\n\nq2\nQ2 session lap time, or if the driver didn’t advance to Q2.\n\n\nq3\nQ3 session lap time, or if the driver didn’t advance to Q3."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html#sprint_results.csv",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html#sprint_results.csv",
+    "title": "Schema",
+    "section": "",
+    "text": "Sprint race classification results, same structure as results.csv, for race weekends with a sprint format.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nresultId\nUnique identifier for the sprint result (primary key).\n\n\nraceId\nForeign key to races.csv.\n\n\ndriverId\nForeign key to drivers.csv.\n\n\nconstructorId\nForeign key to constructors.csv.\n\n\nnumber\nCar number used in the sprint.\n\n\ngrid\nSprint starting grid position.\n\n\nposition\nFinal classified sprint finishing position, or if unclassified.\n\n\npositionText\nFinishing position as text; non-numeric codes for unclassified results.\n\n\npositionOrder\nNumeric finishing order for sorting.\n\n\npoints\nChampionship points scored in the sprint.\n\n\nlaps\nLaps completed.\n\n\ntime\nSprint finishing time (leader) or gap to leader, or .\n\n\nmilliseconds\nSprint time in milliseconds, or .\n\n\nfastestLap\nLap number of the driver’s fastest lap in the sprint, or .\n\n\nfastestLapTime\nFastest sprint lap time, or .\n\n\nstatusId\nForeign key to status.csv describing how the sprint ended for this driver."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html#pit_stops.csv",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html#pit_stops.csv",
+    "title": "Schema",
+    "section": "",
+    "text": "Individual pit stop records: which lap, stop number, time of day, and duration per driver per race.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nraceId\nForeign key to races.csv.\n\n\ndriverId\nForeign key to drivers.csv.\n\n\nstop\nStop number for this driver in this race (1st stop, 2nd stop, etc).\n\n\nlap\nLap on which the stop occurred.\n\n\ntime\nTime of day the stop occurred.\n\n\nduration\nPit stop duration in seconds.\n\n\nmilliseconds\nPit stop duration in milliseconds."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html#lap_times.csv",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html#lap_times.csv",
+    "title": "Schema",
+    "section": "",
+    "text": "Lap-by-lap timing per driver per race (position and time each lap). Does not yet include 2025/2026 data - see README.\n\n\n\nColumn\nDescription\n\n\n\n\nraceId\nForeign key to races.csv.\n\n\ndriverId\nForeign key to drivers.csv.\n\n\nlap\nLap number.\n\n\nposition\nDriver’s race position at the end of this lap.\n\n\ntime\nLap time.\n\n\nmilliseconds\nLap time in milliseconds."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html#driver_standings.csv",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html#driver_standings.csv",
+    "title": "Schema",
+    "section": "",
+    "text": "Championship standings for drivers after each race: cumulative points, position, and wins.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\ndriverStandingsId\nUnique identifier for this standings row (primary key).\n\n\nraceId\nForeign key to races.csv - standings as of after this race.\n\n\ndriverId\nForeign key to drivers.csv.\n\n\npoints\nCumulative championship points through this race.\n\n\nposition\nChampionship standing position.\n\n\npositionText\nStanding position as text.\n\n\nwins\nCumulative race wins through this race."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html#constructor_standings.csv",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html#constructor_standings.csv",
+    "title": "Schema",
+    "section": "",
+    "text": "Championship standings for constructors (teams) after each race: cumulative points, position, and wins.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nconstructorStandingsId\nUnique identifier for this standings row (primary key).\n\n\nraceId\nForeign key to races.csv - standings as of after this race.\n\n\nconstructorId\nForeign key to constructors.csv.\n\n\npoints\nCumulative championship points through this race.\n\n\nposition\nChampionship standing position.\n\n\npositionText\nStanding position as text.\n\n\nwins\nCumulative race wins through this race."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html#constructor_results.csv",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html#constructor_results.csv",
+    "title": "Schema",
+    "section": "",
+    "text": "Points scored by each constructor in each race, aggregated across both of their drivers.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nconstructorResultsId\nUnique identifier for this row (primary key).\n\n\nraceId\nForeign key to races.csv.\n\n\nconstructorId\nForeign key to constructors.csv.\n\n\npoints\nTotal points scored by the constructor in this race.\n\n\nstatus\n‘D’ if the constructor was disqualified from this race, otherwise ."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html#drivers.csv",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html#drivers.csv",
+    "title": "Schema",
+    "section": "",
+    "text": "Driver lookup table: name, code, permanent number, date of birth, and nationality.\n\n\n\nColumn\nDescription\n\n\n\n\ndriverId\nUnique identifier for the driver (primary key).\n\n\ndriverRef\nURL-safe reference slug for the driver.\n\n\nnumber\nPermanent car number, or if none assigned.\n\n\ncode\nThree-letter driver code, or if none assigned.\n\n\nforename\nDriver’s given name.\n\n\nsurname\nDriver’s family name.\n\n\ndob\nDate of birth.\n\n\nnationality\nDriver’s nationality.\n\n\nurl\nWikipedia page for the driver."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html#constructors.csv",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html#constructors.csv",
+    "title": "Schema",
+    "section": "",
+    "text": "Constructor (team) lookup table: name and nationality.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nconstructorId\nUnique identifier for the constructor (primary key).\n\n\nconstructorRef\nURL-safe reference slug for the constructor.\n\n\nname\nConstructor/team name.\n\n\nnationality\nConstructor’s nationality.\n\n\nurl\nWikipedia page for the constructor."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html#circuits.csv",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html#circuits.csv",
+    "title": "Schema",
+    "section": "",
+    "text": "Circuit lookup table: name, location, country, and geographic coordinates.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\ncircuitId\nUnique identifier for the circuit (primary key).\n\n\ncircuitRef\nURL-safe reference slug for the circuit.\n\n\nname\nCircuit name.\n\n\nlocation\nCity or locality.\n\n\ncountry\nCountry.\n\n\nlat\nLatitude.\n\n\nlng\nLongitude.\n\n\nalt\nAltitude in meters. Set to 0 as a placeholder for circuits added after 2024 where this data isn’t available from the source API.\n\n\nurl\nWikipedia page for the circuit."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html#seasons.csv",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html#seasons.csv",
+    "title": "Schema",
+    "section": "",
+    "text": "One row per championship season (year), with a link to that season’s overview.\n\n\n\nColumn\nDescription\n\n\n\n\nyear\nChampionship season (primary key).\n\n\nurl\nWikipedia page for that season."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html#status.csv",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html#status.csv",
+    "title": "Schema",
+    "section": "",
+    "text": "Lookup table of race finishing status codes (e.g. Finished, Retired, Disqualified, Did not start).\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nstatusId\nUnique identifier for the status (primary key).\n\n\nstatus\nHuman-readable status text, referenced by results.csv and sprint_results.csv."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html#practice_results.csv",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html#practice_results.csv",
+    "title": "Schema",
+    "section": "",
+    "text": "Free practice (FP1/FP2/FP3) session results per driver per race, sourced from official F1 live timing via FastF1. Covers only the 2025/2026 races added by this extension - not available for 1950-2024. Reserve/test drivers who ran practice sessions but didn’t race are not included, since they aren’t in drivers.csv.\n\n\n\nColumn\nDescription\n\n\n\n\nraceId\nForeign key to races.csv.\n\n\ndriverId\nForeign key to drivers.csv.\n\n\nsession\nWhich practice session: FP1, FP2, or FP3.\n\n\nposition\nRank within the session by best lap time (1 = fastest).\n\n\nbestLapTime\nDriver’s fastest lap time in this session.\n\n\nlaps\nNumber of laps completed in this session."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html#weather.csv",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html#weather.csv",
+    "title": "Schema",
+    "section": "",
+    "text": "Per-race weather summary (aggregated from minute-by-minute samples), sourced from official F1 live timing via FastF1. Covers only the 2025/2026 races added by this extension - not available for 1950-2024.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nraceId\nForeign key to races.csv.\n\n\nairTempAvg\nAverage air temperature during the race (°C).\n\n\nairTempMin\nMinimum air temperature during the race (°C).\n\n\nairTempMax\nMaximum air temperature during the race (°C).\n\n\ntrackTempAvg\nAverage track surface temperature during the race (°C).\n\n\ntrackTempMin\nMinimum track surface temperature during the race (°C).\n\n\ntrackTempMax\nMaximum track surface temperature during the race (°C).\n\n\nhumidityAvg\nAverage relative humidity during the race (%).\n\n\nwindSpeedAvg\nAverage wind speed during the race (m/s).\n\n\nwindSpeedMax\nMaximum wind speed during the race (m/s).\n\n\nrainfall\nTrue if rain was recorded at any point during the race."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/SCHEMA.html#tire_stints.csv",
+    "href": "posts/most-average-f1-team/data/archive/SCHEMA.html#tire_stints.csv",
+    "title": "Schema",
+    "section": "",
+    "text": "Tire strategy per driver per race, sourced from official F1 live timing via FastF1. Covers only the 2025/2026 races added by this extension - not available for 1950-2024.\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nraceId\nForeign key to races.csv.\n\n\ndriverId\nForeign key to drivers.csv.\n\n\nstint\nStint number for this driver in this race (1st stint, 2nd stint, etc).\n\n\ncompound\nTire compound used this stint (SOFT, MEDIUM, HARD, INTERMEDIATE, WET), or if unknown.\n\n\nstartLap\nFirst lap of this stint.\n\n\nendLap\nLast lap of this stint.\n\n\nlapsOnTire\nNumber of laps completed on this set of tires (endLap - startLap + 1)."
+  },
+  {
     "objectID": "posts/most-average-f1-team/index.html",
     "href": "posts/most-average-f1-team/index.html",
-    "title": "What team is the most average F1 team ever?",
+    "title": "The Quest For The Mundane",
     "section": "",
-    "text": "I no longer care for the Ferraris, Mercedes, Red Bulls and McLarens of the world."
+    "text": "I no longer care for the Ferraris, Mercedes, Red Bulls and McLarens of the world.\ntest text that I want to find out where it goes ok thanks"
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/CHANGELOG.html",
+    "href": "posts/most-average-f1-team/data/archive/CHANGELOG.html",
+    "title": "Changelog",
+    "section": "",
+    "text": "Regenerated SCHEMA.md to include tire_stints.csv, weather.csv, and practice_results.csv (it had gone stale after those tables were added).\n\n\n\n\n\nAdded practice_results.csv: FP1/FP2/FP3 session results (best lap time, laps, rank) per driver per race, sourced from official F1 live timing via FastF1. Covers the 2025/2026 races only. Reserve/test drivers who only ran practice are excluded.\n\n\n\n\n\nAdded weather.csv: per-race weather summary (air/track temp, humidity, wind, rainfall flag), sourced from official F1 live timing via FastF1. Covers the 2025/2026 races only.\n\n\n\n\n\nAdded tire_stints.csv: tire compound and stint length per driver per race, sourced from official F1 live timing via FastF1. Covers the 2025/2026 races only.\n\n\n\n\n\nAdded SCHEMA.md (standalone column reference) and this changelog.\n\n\n\n\n\nBackfilled lap_times.csv for all 35 completed 2025/2026 races (+39,357 rows). Previously skipped due to Jolpica API rate limiting; fetched race-by-race on a slower schedule this time.\n\n\n\n\n\nAdded per-file and per-column descriptions across all 14 tables.\nFixed results.csv/sprint_results.csv position column to correctly use \\N for unclassified (DNF/DSQ/etc) drivers, matching the base dataset’s convention. This also corrected positionOrder sorting for those rows.\n\n\n\n\n\nInitial release: extended the base Formula 1 World Championship (1950-2020) dataset with the full 2025 season (24 races) and every completed 2026 round through the Hungarian Grand Prix (round 11).\nNew entities added: 18 drivers, 2 constructors (Audi, Cadillac), 1 circuit (Madring), 2 status codes (Lapped, Did not start).\nlap_times.csv intentionally left unchanged for 2025/2026 (see v3)."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/CHANGELOG.html#v8---2026-08-11",
+    "href": "posts/most-average-f1-team/data/archive/CHANGELOG.html#v8---2026-08-11",
+    "title": "Changelog",
+    "section": "",
+    "text": "Regenerated SCHEMA.md to include tire_stints.csv, weather.csv, and practice_results.csv (it had gone stale after those tables were added)."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/CHANGELOG.html#v7---2026-08-11",
+    "href": "posts/most-average-f1-team/data/archive/CHANGELOG.html#v7---2026-08-11",
+    "title": "Changelog",
+    "section": "",
+    "text": "Added practice_results.csv: FP1/FP2/FP3 session results (best lap time, laps, rank) per driver per race, sourced from official F1 live timing via FastF1. Covers the 2025/2026 races only. Reserve/test drivers who only ran practice are excluded."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/CHANGELOG.html#v6---2026-08-11",
+    "href": "posts/most-average-f1-team/data/archive/CHANGELOG.html#v6---2026-08-11",
+    "title": "Changelog",
+    "section": "",
+    "text": "Added weather.csv: per-race weather summary (air/track temp, humidity, wind, rainfall flag), sourced from official F1 live timing via FastF1. Covers the 2025/2026 races only."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/CHANGELOG.html#v5---2026-08-11",
+    "href": "posts/most-average-f1-team/data/archive/CHANGELOG.html#v5---2026-08-11",
+    "title": "Changelog",
+    "section": "",
+    "text": "Added tire_stints.csv: tire compound and stint length per driver per race, sourced from official F1 live timing via FastF1. Covers the 2025/2026 races only."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/CHANGELOG.html#v4---2026-08-11",
+    "href": "posts/most-average-f1-team/data/archive/CHANGELOG.html#v4---2026-08-11",
+    "title": "Changelog",
+    "section": "",
+    "text": "Added SCHEMA.md (standalone column reference) and this changelog."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/CHANGELOG.html#v3---2026-08-10",
+    "href": "posts/most-average-f1-team/data/archive/CHANGELOG.html#v3---2026-08-10",
+    "title": "Changelog",
+    "section": "",
+    "text": "Backfilled lap_times.csv for all 35 completed 2025/2026 races (+39,357 rows). Previously skipped due to Jolpica API rate limiting; fetched race-by-race on a slower schedule this time."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/CHANGELOG.html#v2---2026-08-09",
+    "href": "posts/most-average-f1-team/data/archive/CHANGELOG.html#v2---2026-08-09",
+    "title": "Changelog",
+    "section": "",
+    "text": "Added per-file and per-column descriptions across all 14 tables.\nFixed results.csv/sprint_results.csv position column to correctly use \\N for unclassified (DNF/DSQ/etc) drivers, matching the base dataset’s convention. This also corrected positionOrder sorting for those rows."
+  },
+  {
+    "objectID": "posts/most-average-f1-team/data/archive/CHANGELOG.html#v1---2026-08-09",
+    "href": "posts/most-average-f1-team/data/archive/CHANGELOG.html#v1---2026-08-09",
+    "title": "Changelog",
+    "section": "",
+    "text": "Initial release: extended the base Formula 1 World Championship (1950-2020) dataset with the full 2025 season (24 races) and every completed 2026 round through the Hungarian Grand Prix (round 11).\nNew entities added: 18 drivers, 2 constructors (Audi, Cadillac), 1 circuit (Madring), 2 status codes (Lapped, Did not start).\nlap_times.csv intentionally left unchanged for 2025/2026 (see v3)."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "questfortheaverage",
     "section": "",
-    "text": "What team is the most average F1 team ever?\n\n\n\nmotorsports\n\nformula one\n\nsillies\n\n\n\n\n\n\n\n\n\n\n\nNov 13, 2026\n\n\nLuna Acosta\n\n\n\n\n\nNo matching items"
+    "text": "Changelog\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSchema\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmotorsports\n\nformula one\n\nsillies\n\n\n\n\n\n\n\n\n\n\n\nNov 13, 2026\n\n\nLuna Acosta\n\n\n\n\n\nNo matching items"
   }
 ]
